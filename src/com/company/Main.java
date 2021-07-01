@@ -17,13 +17,23 @@ public class Main {
         //because we must expel min and max values
         // average = (sum[] - min - max)/(array.length - 2)
 
+        //Found a solution on stackflow.com, not sure that it's best practise
+        //atleast I usderstood how this loop works,
+        //but int max = IntStream.of(a).max().orElse(Integer.MIN_VALUE); seems like chineese to me
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (int element : ages) {
+            max = Math.max(max, element);
+            min = Math.min(min, element);
+        }
+
         for(int i = 0; i < ages.length; i++){
             sum = sum + ages[i];
             //stuck here, because Math.min() and Math.max() cannot be used for arrays
             //figuring out way to transfer arrays to lines
         }
 
-        average = sum / (ages.length - 2);
+        average = (sum - max - min) / (ages.length - 2);
         System.out.println(average);
     }
 }
